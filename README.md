@@ -21,9 +21,9 @@ RUN pip install Wand
 CMD ["python", "./serverThread.py" ]
 
 Run docker: 
--p - port onlocal:incontainer
--e - envonments
--v - volume(folder on local:folder in container)
+- p - port onlocal:incontainer
+- e - envonments
+- v - volume(folder on local:folder in container)
 
 docker run -p 8888:8888 -e PORT=8888 -v "/var/www/image_resizer:/image_resizer  -it image_resizer
 
