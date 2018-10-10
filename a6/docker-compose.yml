@@ -1,0 +1,8 @@
+version: '2'
+services:
+  auto6:
+    image: auto6
+    volumes:
+      - /var/www/auto6:/var/www/auto6
+    ports: 
+      - 9000:9000  
