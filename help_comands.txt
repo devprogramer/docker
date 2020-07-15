@@ -1,4 +1,4 @@
-docker build  -t my-python-app . # 8000 - порт в системе на 8000 порт в докере
+docker build  -t my-python-app . # Зборка з докер файла
 docker run -p 8000:8000 -t my-python-app . # 8000 - порт в системе на 8000 порт в докере
 docker run -it alpine
 docker ps -a
@@ -14,3 +14,10 @@ cat /etc/os-release
 sudo docker exec -i -t loving_heisenberg /bin/bash #by Name
 или
 sudo docker exec -i -t 665b4a1e17b6 /bin/bash #by ID
+
+docker images -a  # всі образи
+docker ps -a  # всі контейнери
+docker rmi image_id # видалити образ, 
+docker rm container_id # видалити контейнер
+
+
