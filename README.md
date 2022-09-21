@@ -29,6 +29,7 @@ $ docker run -p 8888:8888 -e PORT=8888 -v "/var/www/image_resizer:/image_resizer
 </code>.   
 
 
+
 Remove all not used layers:    
 <code>
 $ docker system prune --volumes --all 
