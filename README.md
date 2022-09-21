@@ -28,15 +28,18 @@ Run docker:
 $ docker run -p 8888:8888 -e PORT=8888 -v "/var/www/image_resizer:/image_resizer  -it image_resizer
 </code>.   
 
+
 - Remove all not used layers:    
 <code>
 $ docker system prune --volumes --all 
 </code>.   
 
+
 - Remove dangling images:    
 <code>
 $ docker rmi $(docker images -f dangling=true -q)
 </code>.   
+
 
  - Stop and remove all containers (running or not):    
 <code>
