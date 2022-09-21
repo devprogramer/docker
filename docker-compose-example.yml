@@ -1,0 +1,75 @@
+version: '3.7'
+services:
+  api:
+    restart: on-failure
+    build:
+      context: ./apps/path-to-folder/
+      dockerfile: Dockerfile-server-dev
+    volumes:
+      - "./apps/path-to-folder/:/app:rw"
+    env_file:
+      - ./apps/path-to-folder/example.env
+    environment:
+      - MARIADB_ORM_HOST=maria_db
+      - MARIADB_ORM_PORT=3306
+      - MARIADB_ORM_USER=user
+      - MARIADB_ORM_PASSWORD=pass
+      - MARIADB_ORM_DB=project
+    ports:
+      - 3000:3000
+    depends_on:
+      - maria_db
+#      - migrations
+    command: npm run start:dev
+
+  migrations:
+    restart: on-failure
+    env_file:
+      - ./apps/path-to-project-2/example.env
+    build:
+      context: ./apps/path-to-project-2/
+      dockerfile: Dockerfile
+    depends_on:
+      - maria_db
+    command: npm run migration:run
+
+  front-end:
+    build:
+      context: ./
+      dockerfile: ./apps/path-to-project-front/Dockerfile-front
+    ports:
+      - 3001:3001
+    command: bash -c "rush update && cd ./apps/path-to-project-2 && npm run serve"
+
+  maria_db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: database-name
+      MYSQL_USER: root
+      MYSQL_PASSWORD: pass
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+
+  admin-api:
+    restart: on-failure
+    env_file:
+      - ./apps/path-to-project-3/example.env
+    build:
+      context: ./apps/path-to-project-3
+      dockerfile: Dockerfile-server
+    environment:
+      - MARIADB_ORM_HOST=maria_db
+      - MARIADB_ORM_PORT=3306
+      - MARIADB_ORM_USER=root
+      - MARIADB_ORM_PASSWORD=pass
+      - MARIADB_ORM_DB=project
+    ports:
+      - 3010:3010
+    depends_on:
+      - maria_db
+      - api_migrations
+    command: npm run start
