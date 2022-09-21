@@ -33,8 +33,8 @@ $ docker system prune --volumes --all
 
 Remove dangling images
 
-{code}
+&lt;
 $ docker rmi $(docker images -f dangling=true -q)
-{code}
+&gt;
 
 docker rm $(docker stop $(docker ps -aq))
