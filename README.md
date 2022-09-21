@@ -38,7 +38,7 @@ Remove dangling images:\\
 $ docker rmi $(docker images -f dangling=true -q)
 </code>
 
-Stop and remove all containers (running or not) : \\
+Stop and remove all containers (running or not):    
 <code>
 docker rm $(docker stop $(docker ps -aq))
 </code>
