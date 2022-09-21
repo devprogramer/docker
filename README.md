@@ -26,7 +26,7 @@ Run docker:
 - v - volume(folder on local:folder in container)    
 <code>
 $ docker run -p 8888:8888 -e PORT=8888 -v "/var/www/image_resizer:/image_resizer  -it image_resizer
-</code>.   
+</code>     
 
 
 Remove all not used layers:    
