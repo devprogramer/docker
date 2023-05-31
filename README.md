@@ -46,3 +46,8 @@ Stop and remove all containers (running or not):
 <code>
 docker rm $(docker stop $(docker ps -aq))
 </code>.   
+
+
+smtp server
+$ docker run -it -p 2500:2500 -p 8080:8080 -p 8085:8085 --rm marcopas/docker-mailslurper
+
